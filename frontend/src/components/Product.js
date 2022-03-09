@@ -1,8 +1,11 @@
 import React from 'react'
+import { Card } from 'react-bootstrap'
 
-const Product = () => {
+const Product = ({product}) => {
   return (
-    <div>Product</div>
+    <Card className= 'my-3 p-3 rounded'>
+        <Card.Img src={product.image} variant='top' />
+    </Card>
   )
 }
 
