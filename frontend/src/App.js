@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 
 const App = () => {
   return (
@@ -12,9 +13,10 @@ const App = () => {
           <Header />
             <main className='py-4'>
             <Container>
-               <Route path='/' element={<HomeScreen />} exact />                  {/*   when the path is / exactly at end of url then show homescreem component   */}
+              <Routes>                                                           {/*    Must wrap all individual routes in Routes */}
+                <Route path='/' element={<HomeScreen />} exact />                  {/*   when the path is / exactly at end of url then show homescreem component   */}
                 <Route path='/product/:id' element={ <ProductScreen /> } />        {/* use colon to read off parameter in js file */}
-            
+              </Routes>
             </Container>                                                          
             </main>
             <Footer />

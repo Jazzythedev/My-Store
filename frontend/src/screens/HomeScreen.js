@@ -10,7 +10,7 @@ const HomeScreen = () => {
    <>
       <h1>Latest Products</h1>
       <Row>
-        {products.map((product) => (                                                  /* map function looping through products object and displaying it in 'product' variable */
+        {products.map((product) => (                                                  /* map function looping through products array and displaying it in 'product' variable */
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>                     {/*   When displaying each product, it must have a unique key so it is easy to manipulate and id is the unique key */}
               <Product product={product} />                                             {/*  each element in variable 'product' will be hooked to parameter product of component Product */}
              </Col>        
