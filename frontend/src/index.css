@@ -1,3 +1,15 @@
 main {
     min-height: 80vh;
 }
+
+h3 {
+    padding:  1rem 0;             /*      for product component */
+}
+
+.rating span {                      /*      for product component */
+    margin: .1rem;                    
+}
+
+
+
+

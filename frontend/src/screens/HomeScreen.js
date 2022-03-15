@@ -11,7 +11,7 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       <Row>
         {products.map((product) => (
-            <Col sm={12} md={6} lg={4} xl={3}>
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>                     {/*   When displaying each product, it must have a unique key so it is easy to manipulate and id is the unique key */}
               <Product product={product} />
              </Col>        
         ))}    
