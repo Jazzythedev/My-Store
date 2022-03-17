@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import products from '../products';
+import axios from 'axios'
 import Rating from '../components/Rating';
 
 const ProductScreen = () => {
  
         const params =useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
-        
-       const product = products.find((p) => p._id === params.id)                                     /* (Access specific parameter using id key and must match route name in product screen), find method. for each key let p be each element in the array. Check the ID, is it equal to the ID the user is passing? Store it in a const variable called product */
+        const [product, setProduct] = useState({})           /*  useState hook used here. called it product singular bec it will return one product, and default value is an object(product by default is empty) */
+      
+        useEffect(() => {                                          /*  call on useffect to make axios call, explaination in homescreen */
+            const fetchProduct = async () => {
+                const {data} = await axios.get(`/api/products/${params.id}`)     /*  {Deconstructing data} recieved from axios.  aking call to axios. use backtick to access params in react.  only do :id wnen creating the API, now do interpolation*/
 
+                  setProduct(data)                                           /*  Pass the data to function and send it to state called product */
+            }
+         },[] )
      return (                                                      /* Return statement to give means to display product in html*/
      <>
      <Link className='btn btn-light my-3' to='/'>                 {/* Link to return to homescreen */}
