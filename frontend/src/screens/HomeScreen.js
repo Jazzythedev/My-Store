@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
 import Product from '../components/Product'
 import {Row, Col} from 'react-bootstrap'
+import axios from 'axios'
+
 
 
 
 const HomeScreen = () => {
   
   useEffect(() => {                                                    /*  used to retrieve data while Comp. is mounting to avoid loading Time. This will get the product details ready so that when used clicks on a product it loads immediately */
-   axios.get('/api/products')                                                                   /* Calls on axios to fetch product get(get api). This needs to be matched with the type of API that was written. axios will look up the proxy, so dont write the whole url.   */
+   const {data} = axios.get('/api/products')                   /* Calls on axios to fetch product get(get api). This needs to be matched with the type of API that was written. axios will look up the proxy, so dont write the whole url. This is what the postman delivers."deconstruct" output to only give you data, and store response/return in variable called data.   */
 
 
   } )                                                              
