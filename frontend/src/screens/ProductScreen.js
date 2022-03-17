@@ -6,7 +6,7 @@ import Rating from '../components/Rating';
 
 const ProductScreen = () => {
  
-        const params =useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
+        const params = useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
         const [product, setProduct] = useState({})           /*  useState hook used here. called it product singular bec it will return one product, and default value is an object(product by default is empty) */
       
         useEffect(() => {                                          /*  call on useffect to make axios call, explaination in homescreen */
@@ -15,7 +15,10 @@ const ProductScreen = () => {
 
                   setProduct(data)                                           /*  Pass the data to function and send it to state called product */
             }
-         },[] )
+
+            fetchProduct()                                                     /*  Function is called here and secodary thread created at this Point.  */
+
+         },[])
      return (                                                      /* Return statement to give means to display product in html*/
      <>
      <Link className='btn btn-light my-3' to='/'>                 {/* Link to return to homescreen */}
