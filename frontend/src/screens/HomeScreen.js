@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Product from '../components/Product'
 import {Row, Col} from 'react-bootstrap'
 import axios from 'axios'
@@ -7,16 +7,16 @@ import axios from 'axios'
 
 
 const HomeScreen = () => {
-  
-  useEffect(() => {                                                    /*  used to retrieve data while Comp. is mounting to avoid loading Time. This will get the product details ready so that when used clicks on a product it loads immediately */
+  const [ products, setProducts] = useState([])                      /*  useState hook. takes 1 argument(initial state) and returns two Values, the current state and a function that can be used to update the status. products is the name given to the var that will store the data. create this when the component is still being constructed. useState=([]) is th e */
+  useEffect(() => {                                                    /*  called whenver comp is getting loaded.used to retrieve data while Comp. is mounting to avoid loading Time. This will get the product details ready so that when used clicks on a product it loads immediately */
    
-  let products = {}                                                                       /* Add this after following 4 lines, created var  called products */
+  
   const fetchProducts = async () => {                                                       /* This function will be called in a secondary thread. asyncronous/multithreading to get more document. thread 1 recieves req from user and thread 2 gets data and brings it back. function named fetchProduct */
   const {data} = await axios.get('/api/products')                   /* Calls on axios to fetch product get(get api). This needs to be matched with the type of API that was written. axios will look up the proxy, so dont write the whole url. This is what the postman delivers."deconstruct" output to only give you data, and store response/return in variable called data.  await tells thread to wait for data to return before fetching data from new req. */
-    products = data                                                                    /* above data value exist only wthin functionin secondary thread.let products equal data so it will give data to the parent thread. Use hook to give it to first thread */
+   setProducts(data)                                               /*  once data is available call state function to put data into the var 'products' that was declared in useState */
   }
 
-  fetchProducts()                                  /*  Function is called here and secodary thread created at this Point.  */
+  fetchProducts()                                                   /*  Function is called here and secodary thread created at this Point.  */
   })                                                              
   
   
