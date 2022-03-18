@@ -4,7 +4,7 @@
   "description": "My E-commerce site",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server"         
+    "start": "node backend/server"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Jazzythedev/My-Shop#readme",
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
