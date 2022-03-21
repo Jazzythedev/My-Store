@@ -19,7 +19,8 @@ const ProductScreen = () => {
             fetchProduct()                                                     /*  Function is called here and secodary thread created at this Point.  */
 
          },[])
-     return (                                                      /* Return statement to give means to display product in html*/
+     
+        return (                                                      /* Return statement to give means to display product in html*/
      <>
      <Link className='btn btn-light my-3' to='/'>                 {/* Link to return to homescreen */}
        Go Back
