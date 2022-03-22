@@ -1,10 +1,11 @@
 import express from 'express'                      /* import express to create routes, syntax changed fom common js to emca  */
 import products from './data/products.js'               /* import js file to be used. must add .js, syntax changed fom common js to emca  */
 import dotenv from 'dotenv'
-
+import connectDB from './config/db.js'
 const app = express()                                                      /*  create instance of express to setup routes ie using the bus */
-dotenv.config()                                                            /* tells code to open the env file and read it */
-
+dotenv.config()                                                             /* tells code to open the env file and read it */
+ connectDB()                                                                         /* execute function to connect to DB */
+                                                      
  app.get('/api/products', (req, res) => {                                      /* 'app' is express and it is the listener .client calling API using get route. 'get' is one of many routes */
     res.json(products)                                                         /*  send req, respond back with json of products */
  
