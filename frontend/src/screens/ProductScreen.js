@@ -18,7 +18,7 @@ const ProductScreen = () => {
 
             fetchProduct()                                                     /*  Function is called here and secodary thread created at this Point.  */
 
-         },[])
+         },[params])                  /* when the params change ie user clicks on another pruoduct, rerun the useeffect hook */
      
         return (                                                      /* Return statement to give means to display product in html*/
      <>

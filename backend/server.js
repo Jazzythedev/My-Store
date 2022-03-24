@@ -2,6 +2,8 @@ import express from 'express'                      /* import express to create r
 import products from './data/products.js'               /* import js file to be used. must add .js, syntax changed fom common js to emca  */
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+
+
 const app = express()                                                      /*  create instance of express to setup routes ie using the bus */
 dotenv.config()                                                             /* tells code to open the env file and read it */
  connectDB()                                                                         /* execute function to connect to DB */
