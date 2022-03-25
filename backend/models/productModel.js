@@ -19,18 +19,18 @@ const reviewSchema = mongoose.Schema({                                   /* name
 
 //creating schema for product//
 
-const productSchema = mongoose.Schema({                 /* create a schema and name it productSchema, tell mongoose its a schema. all parameters for each produt and type must be included for formatting */
-   user:{                                   /* THIS IS HOW YOU SET UP A RELATIONSHIP BETWEEN ONE COLLECTION AND ANOTHER. thsi column is populated by pointing to the users collection. */
+const productSchema = mongoose.Schema({                          /* create a schema and name it productSchema, tell mongoose its a schema. all parameters for each produt and type must be included for formatting */
+   user:{                                                     /* THIS IS HOW YOU SET UP A RELATIONSHIP BETWEEN ONE COLLECTION AND ANOTHER. thsi column is populated by pointing to the users collection. */
     type: mongoose.Schema.Types.ObjectId,                                    /* type is a mongoose schema.it includes the unique ID that is created by mongoose for every collection. */
-     ref: 'Users',               /* the table we are referencing, users table. THis column in our product is the ID that is coming from the users table */
+     ref: 'Users',                                                  /* the table we are referencing, users table. THis column in our product is the ID that is coming from the users table */
     required: true
     },    
     name: {
-        type: String,                /* write an object stating type of field is string, and make it required otherwise there are products without names! if you dont say required, by default its false */
+        type: String,                                         /* write an object stating type of field is string, and make it required otherwise there are products without names! if you dont say required, by default its false */
         required: true
     },
     image: {
-        type: String,           /* url to image is a string */
+        type: String,                                           /* url to image is a string */
         required: true
     },
     brand: {
@@ -45,16 +45,16 @@ const productSchema = mongoose.Schema({                 /* create a schema and n
         type: String,
         required: true
     },
-    reviews: [reviewSchema],                    /* object withing an object that refers to the above schema. This is an array of what we defined above. json within json. */
+    reviews: [reviewSchema],                                    /* object withing an object that refers to the above schema. This is an array of what we defined above. json within json. */
     rating: {
         type: Number,
         required: true,
-        default: 0                      /* default rating if not given*/
+        default: 0                                              /* default rating if not given*/
     },
     price: {
         type: Number,
         required: true,
-        default: 0                       /* default price if not set */
+        default: 0                                              /* default price if not set */
     },
     countInStock: {
         type: Number,

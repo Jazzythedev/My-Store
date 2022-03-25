@@ -1,3 +1,5 @@
+//this is all now seeding/sample data to add to db//
+
 const products = [
     {
       name: 'Airpods Wireless Bluetooth Headphones',

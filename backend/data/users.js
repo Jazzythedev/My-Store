@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 
 
 /* create dummy data and seed it into the database for database testing */
-
+//this is all seeding/sample data to add to db//
 
 
 const users = [
