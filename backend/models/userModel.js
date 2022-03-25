@@ -15,7 +15,7 @@ import mongoose  from "mongoose";                   /* mongoose creates tables/c
         type: String,
         required: true,
     },
-    isAdmin: {
+    isAdmin: {                  /* shows if someone is an admin */
         type: Boolean,
         required: true,
         default: false      /* by default everyone is not an admin */

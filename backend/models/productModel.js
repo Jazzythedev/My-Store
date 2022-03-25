@@ -20,6 +20,11 @@ const reviewSchema = mongoose.Schema({                                   /* name
 //creating schema for product//
 
 const productSchema = mongoose.Schema({                 /* create a schema and name it productSchema, tell mongoose its a schema. all parameters for each produt and type must be included for formatting */
+   user:{                                   /* THIS IS HOW YOU SET UP A RELATIONSHIP BETWEEN ONE COLLECTION AND ANOTHER. thsi column is populated by pointing to the users collection. */
+    type: mongoose.Schema.Types.ObjectId,                                    /* type is a mongoose schema.it includes the unique ID that is created by mongoose for every collection. */
+     ref: 'Users',               /* the table we are referencing, users table. THis column in our product is the ID that is coming from the users table */
+    required: true
+    },    
     name: {
         type: String,                /* write an object stating type of field is string, and make it required otherwise there are products without names! if you dont say required, by default its false */
         required: true
