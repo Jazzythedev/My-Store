@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 /* create dummy data and seed it into the database for database testing */
 //this is all seeding/sample data to add to db//
 //console.log("hello")
-const user_list = [
+const users = [
     {
         name: 'Admin User',                     /* all users must have a name */
         email: 'admin@myShop.com',
@@ -27,4 +27,4 @@ const user_list = [
 ];
 
 
-export default user_list;              /* so it can be used in other js files */
+export default users;              /* so it can be used in other js files */

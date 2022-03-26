@@ -1,4 +1,4 @@
-import users from "./data/users.js"
+import users from './data/users.js'
 import products from './data/products.js'
 import Users from './models/userModel.js'
 import Products from './models/productModel.js'
@@ -55,7 +55,7 @@ const destroyData = async () => {                       /* job is do delete reco
 
     } catch (error) {
       console.error(`${error}`)
-      process.exit(1)
+      process.exit(1)                         /* no need to do control+c anymore ! */
     }
 }
 /* dont export default since we arent going to use the js file elsewhere in project */
@@ -66,4 +66,4 @@ if (process.argv[2] === '-d') {               /* If we call on node with a seede
     importData()            
  }
 
- //to test this run npm run data:import.it should say 'data has been imported'// 
+ //to test this run npm run data:import.it should say 'data has been imported' go to collections in DB to see that it is imported.// 
