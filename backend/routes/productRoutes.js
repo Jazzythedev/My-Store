@@ -28,10 +28,10 @@ router.get('/:id', asyncHandler(async (req, res) => {          /* mongoose comma
       if (product) {                                                             
         res.json(product)
     }   else {
-        res.status(404).json({message: 'Produt not found'})                     /* if product found return product otherwise respond with a 404(not found). */
+        res.status(404).json({message: 'Product not found'})                     /* if product found return product otherwise respond with a 404(not found). */
     }
     }))
 
-export default router  
+export default router                                               /* routes will be exported, and used around project invluding serves.js */
 
 /* to test npm run dev. test throught postman first. select right env. and click send. */
