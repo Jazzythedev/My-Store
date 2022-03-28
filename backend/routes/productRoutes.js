@@ -29,6 +29,7 @@ router.get('/:id', asyncHandler(async (req, res) => {          /* mongoose comma
         res.json(product)
     }   else {
         res.status(404).json({message: 'Product not found'})                     /* if product found return product otherwise respond with a 404(not found). */
+        throw new error('Product not found')                            /* Throws error in application. since there is no try catch it will route to middleware. */
     }
     }))
 

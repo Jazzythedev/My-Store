@@ -1,8 +1,9 @@
 // middleware is designed to handled error exceptions that were not handled in the trycatch.This is error handling for th entire application. THis is triggered by an unhandled exception/error.//
 
+//THis function is fired when an API/URL doesnt exist.//
 const notFound = (req, res, next) => {      /* to speficifically handle 404 messages. 3 parameters, very general, it will be called during every route that is called.   */
   console.log( 'I am in not found')         
-  const error = new Error(`Not found - ${req.originalUrl}`)     /* whatever the original url was, its not found. */
+  const error = new Error(`Not found - ${req.originalUrl}`)     /* whatever the original url was, its not found. When you throw a new error, it looks for a try catch to throw the error to. looking for someone to throw the baton to. if there is no try catch, it is an unhandled exception. By passing the error to 'next'. it is passed to the error handler then */
   res.status(404)         /* only called for 404 */
   next(error)           /* you will be passed to the next stage, since this function will always be called. */
     

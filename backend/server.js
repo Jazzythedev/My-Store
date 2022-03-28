@@ -17,9 +17,9 @@ dotenv.config()                                                             /* t
  
  
  app.use('/api/products', productRoutes)                         /* telling express if you see a a url that says api/products, route them to productRoutes  */
- app.use(errorHandler)                                                                  /* this is the eror middleware handler that handles exceptions for the entire application if there isnt a trycatch. this is a route, but we dont specify a route url bc we want express to use this for every call that is made. so that if there is an unhandled route it will be diverted to the middleware. */
+ 
 app.use(notFound)                                                   /* notFound funtion */
-
+app.use(errorHandler)                                               /* this is the eror middleware handler that handles exceptions for the entire application if there isnt a trycatch. this is a route, but we dont specify a route url bc we want express to use this for every call that is made. so that if there is an unhandled route it will be diverted to the middleware. */
 
 
 
