@@ -5,7 +5,7 @@
 /* Reducers recieve state(data) + action. Type of action is product list req, product list success, and product list fail. */
 //reducers are woken up when create store fucntion is fired! Upon waking, every reducer passes an action type "initialize"  which is the default state. This returns the current state to the store.//
 
-
+import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants";
 
 export const productListReducer = (state = {products: []},                    /* this is a funtion called productListReducer, it has two parameters. pass the state and what action you want to do. Action has a property called type which tells you what keyword you just received. This reducers resp. is to store products in the store, and it is an empty array to begin with since we are waiting for the data to come through. */
  action) => {
@@ -19,3 +19,4 @@ export const productListReducer = (state = {products: []},                    /*
         default:                                                /*  if none of the above, return current state(empty product array) to redux store. Return from reducer means data is returned to store.*/
             return state
 }}
+
