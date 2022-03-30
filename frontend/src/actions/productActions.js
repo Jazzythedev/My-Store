@@ -6,7 +6,7 @@ import axios from 'axios'                                                       
 
 
 
-export const listProducts = () => async (dispatch) => {                     /* THIS IS THE FIRST CUNTION WE HAVE WRITTEN IN THE ACTION. call a funtion listProducts with no parameters, it doesnt need any. Make it asyncronous, and use the dispatch command within react to allows actions to dispatch. Async will dispatch..*/
+export const listProducts = () => async (dispatch) => {                     /* THIS IS THE FIRST FUNCTION WE HAVE WRITTEN IN THE ACTION. call a funtion listProducts with no parameters, it doesnt need any. Make it asyncronous, and use the dispatch command within react to allows actions to dispatch. Async will dispatch..*/
     try{                                                                        /* try catch to catch errors */
         dispatch({                                                                            /* dispatch calls must have type of dispatch call that is made and then payload */
             type: PRODUCT_LIST_REQUEST                                            /* No payload required here   */
