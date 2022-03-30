@@ -28,7 +28,7 @@ export const listProducts = () => async (dispatch) => {                     /* T
         })                                                                           
 }  
 
-export const listProductDetails = (id) => async (dispatch) => {             /* THIS IS THE second FUNCTION WE HAVE WRITTEN IN THE ACTION. call a funtion listProductsDetails with one parameter, the ID. Make it asyncronous, and use the dispatch command within react to allows actions to dispatch. Async will dispatch..*/
+export const listProductDetails = (id) => async (dispatch) => {             /* THIS IS THE second FUNCTION WE HAVE WRITTEN IN THE ACTION. call a funtion listProductsDetails with one parameter, the ID(This means you fetching product details from a single specific product in the list.). Make it asyncronous, and use the dispatch command within react to allows actions to dispatch. Async will dispatch..*/
     try{                                                                        /* try catch to catch errors */
         dispatch({
             type: PRODUCT_DETAILS_REQUEST                                       /* No payload required here   */

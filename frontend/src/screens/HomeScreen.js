@@ -25,9 +25,9 @@ const HomeScreen = () => {
    <>
       <h1>Latest Products</h1>
       {loading ? (                                                            /* binding. if statement. if loading is true, then display loading component. Otherwise check if there is an error. then display the error in a h3 tag.otherwise if there is no error and no loading true then display products.  */
-        <Loader />                                                                                              
+        <Loader />                                                      /* this is the loader component that goes here, and is fired when the page is still loading. */                                                                                         
       ) : error ? (                                                                                           
-        <Message variant='danger'>{error}</Message>                          /* Display message comp and bind error to it. */
+        <Message variant='danger'>{error}</Message>                          /* Display message comp fi there is an error and bind error to it. */
       ): (<Row>                                                                          {/*  /*  otherwise if there is no error and no loading true then display products.  */}
         {products.map((product) => (                                                  /* map function looping through products array and displaying it in 'product' variable */
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>                     {/*   When displaying each product, it must have a unique key so it is easy to manipulate and id is the unique key */}

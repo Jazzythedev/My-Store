@@ -21,11 +21,11 @@ export const productListReducer = (state = {products: []},                    /*
     }
 }
 
-export const productDetailsReducer = (state = { product: {reviews: []} },  /* refer to the above notes to apply the same understanding */
+export const productDetailsReducer = (state = { product: {reviews: []} },  /* refer to the above notes to apply the same understanding. in regards to the reviews part: reviews are something that updates/changes as people submit new reviews, the reducer is 'fetching' the current state - the product with however many reviews it has at that time */
 action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
-            return { loading: true, ...state}
+            return { loading: true, ...state}                   /* '...' allows you to copy all or part of an existing array or object into another array or object */
         case PRODUCT_DETAILS_SUCCESS:
             return {loading: false, product: action.payload}
         case PRODUCT_DETAILS_FAIL:
