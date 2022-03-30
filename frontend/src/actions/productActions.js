@@ -11,7 +11,7 @@ export const listProducts = () => async (dispatch) => {                     /* T
         dispatch({                                                                            /* dispatch calls must have type of dispatch call that is made and then payload */
             type: PRODUCT_LIST_REQUEST                                            /* No payload required here   */
             });
-        const {data} = await axios.get('/api/products')                              /* make axios call and put results in a variable called data. This is taken away from home screen and is locatedhere now */
+        const {data} = await axios.get('/api/products')                              /* make axios call and put results in a variable called data. This call is taken away from home screen and is located here now */
                                                                                     /* products list received and then make another dispatch call to say.. */
         dispatch({
             type: PRODUCT_LIST_SUCCESS,                                                /* this call says that product list was acquired and passes the product list that was stored in the data variable. */
