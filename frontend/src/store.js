@@ -1,4 +1,4 @@
-{/* this is a temporary store in your browser used by your apploication alone. */}
+{/* this is a temporary store in your browser used by your apploication alone. */}/* The whole redux process is happening in the browser window of the user, as they go though the website and access information, redux store is created on their local browser. Each respective client thats browsing in the website gets memory taken on their browser for reduz store.  */
 //This is only to take data from the DB and share it across components and for faster access to data // 
 /* This is part of the first step to setting up redux. Redux allows one to share data across components. It is a library that allows you to create a global memory for any component to access, as a temp store. For example, a button click triggers a fuction(action). The info is passed to a reducer who listens for a specific type of data they have been subscribed to, and the info is then written in a store. The data is then available to all components. */
 /* The process is to create a store, create a reducer, write the actions and then hook up with components.  */
