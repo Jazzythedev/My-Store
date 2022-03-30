@@ -3,6 +3,8 @@ import Product from '../components/Product'
 import { useDispatch, useSelector } from 'react-redux'                       /* useDispatch is a hook available from react redux to make dispatch calls from the homescreem  */  /* useSelector is a hook to fetch data from the redux store */
 import {Row, Col} from 'react-bootstrap'
 import { listProducts } from '../actions/productActions'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 
 
 
@@ -22,10 +24,10 @@ const HomeScreen = () => {
   return (
    <>
       <h1>Latest Products</h1>
-      {loading ? (                                                            /* binding. if statement. if loading is true, display h2 saying loading. Otherwise check if there is an error. then display the error in a h3 tag.otherwise if there is no error and no loading true then display products.  */
-        <h2>loading...</h2>                                                                                              
+      {loading ? (                                                            /* binding. if statement. if loading is true, then display loading component. Otherwise check if there is an error. then display the error in a h3 tag.otherwise if there is no error and no loading true then display products.  */
+        <Loader />                                                                                              
       ) : error ? (                                                                                           
-        <h3>{error}</h3>                                                                /* bind to the error. */
+        <Message variant='danger'>{error}</Message>                          /* Display message comp and bind error to it. */
       ): (<Row>                                                                          {/*  /*  otherwise if there is no error and no loading true then display products.  */}
         {products.map((product) => (                                                  /* map function looping through products array and displaying it in 'product' variable */
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>                     {/*   When displaying each product, it must have a unique key so it is easy to manipulate and id is the unique key */}

@@ -24,9 +24,9 @@ const ProductScreen = () => {
        Go Back
      </Link>
      {loading ? (                                           /* binding. if statement. if loading is true, display oading component. Otherwise check if there is an error, and if there is, display the message component along with error message..otherwise if there is no error then display product details.  */
-       <loader />
+       <Loader />
      ) : error ? (
-       <message variant='danger'>{error}</message>
+       <Message variant='danger'>{error}</Message>        /* here is a message component that provides message feedback. 'danger' refers to one of its styling options/variants. */
      ) : (
      <Row>
        <Col md={6}>                                               
