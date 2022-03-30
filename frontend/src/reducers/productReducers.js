@@ -21,7 +21,7 @@ export const productListReducer = (state = {products: []},                    /*
     }
 }
 
-export const productDetailsReducer = (state = { product: {reviews: []} },
+export const productDetailsReducer = (state = { product: {reviews: []} },  /* refer to the above notes to apply the same understanding */
 action) => {
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:

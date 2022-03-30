@@ -7,15 +7,15 @@
 
 import {createStore, combineReducers, applyMiddleware} from 'redux'              /* All these imported funtions exist within the redux library. createStore creates a store, combineReducers combines reducers to be added to parameters as a group under one name, and applyMiddleware which breaks data into array of thunks. If you make an enhancement to the store(thunking in this case), you have to use appMiddleware. appmiddleware is a function that changes data, it will break the data into thunks.  */
 import thunk from 'redux-thunk'                                             /* break the data into chunks. */
-import { productListReducer } from './reducers/productReducers'             /* import the productlist reducer */
+import { productListReducer, productDetailsReducer } from './reducers/productReducers'             /* import the productlist reducer and details reducer */
 import {composeWithDevTools} from 'redux-devtools-extension'                /* this funtion within the redux devtools ext allows you to see the redux store in the dev tools. you are extending your data to be seen in the devtool window */
 
 
 /*  Fire the function createStore, and give it 2 parameters. 1. reducers- Reducers are always used to write data into the store. They are functions and there is one reducer for each task.  2. initial state- default data that is seen within store/preloaded stored data.  */
 
 const reducer = combineReducers({                               /* function in redux that combines all reducers, empty objects,. Store that in value reducer and give it to the store. */
- productList: productListReducer                                           /* here we create a simple name for functions that we are going to call, instead of using the function name, to shorten typing time. */
-
+ productList: productListReducer,                                           /* here we create a simple name for functions that we are going to call, instead of using the function name, to shorten typing time. */
+ productDetails: productDetailsReducer
 })  
 const initialState = {}                                                /* this is the initial state, its an empty object. */
 const middleware = [thunk]                                              /* array of thunks stored in a variable called middleware */

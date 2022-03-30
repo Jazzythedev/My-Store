@@ -1,30 +1,33 @@
-import React, {useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import axios from 'axios'
+import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'      
 import Rating from '../components/Rating';
+import { useDispatch, useSelector } from 'react-redux'                       /* useDispatch is a hook available from react redux to make dispatch calls from the product screen  */  /* useSelector is a hook to fetch data from the redux store */
+import { listProductDetails } from '../actions/productActions';         /* Product details function action */
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 
 const ProductScreen = () => {
- 
-        const params = useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
-        const [product, setProduct] = useState({})           /*  useState hook used here. called it product singular bec it will return one product, and default value is an object(product by default is empty) */
-      
-        useEffect(() => {                                          /*  call on useffect to make axios call, explaination in homescreen */
-            const fetchProduct = async () => {
-                const {data} = await axios.get(`/api/products/${params.id}`)     /*  {Deconstructing data} recieved from axios.  aking call to axios. use backtick to access params in react.  only do :id wnen creating the API, now do interpolation*/
-
-                  setProduct(data)                                           /*  Pass the data to function and send it to state called product */
-            }
-
-            fetchProduct()                                                     /*  Function is called here and secodary thread created at this Point.  */
-
-         },[params])                  /* when the params change ie user clicks on another pruoduct, rerun the useeffect hook */
-     
+  const params = useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
+  const dispatch = useDispatch()            /* Make dispatch call, trigger list products details function. from the productscreen created a var called dispatch store the hook 'useDispatch' in it. */     
+  const productDetails = useSelector((state) => state.productDetails)   /* create a var called product list details that will fire the hook(useSelector) to read data from the redux store, which is the state information. From the state we want to read to read product details. THe contents of the redux store should  have loading flag, products and a possibility of an error. */
+  const { loading, error, product } = productDetails               /* from the productDetails deconstruct the output to get what you want. these key words much match the names that are written by the reducer in productReducer file.*/       
+   
+  useEffect(() => {                                 /*  called whenver comp is getting loaded.used to retrieve data while Comp. is mounting to avoid loading Time. This will get the product details ready so that when user clicks on a product it loads immediately */
+  dispatch(listProductDetails(params.id))         //dispatch here, listproductsdetails the funciton that was written in actions. once it is triggered, what happens is what is triggered in the function:product details request, reducer sets loadin to true, and products to empty. and  axios call to get products details, dispatch product delails success and payload of data. reducer picks that up sets loading flag to false and writes payload array into redux store. All of this can be confirmed by starting the app and opening up dev tools. in the redux store one can see the actions that were called (init ,product details req and product details success along with the contents of the store after each action.)
+  }, [dispatch, params])                            /* [] is part of useEffects,and useEffect runs when a dispatch is made. adding the [] means have the useEffect run again only when there is a change to the variable, for example if someone clicks semthing else omn the page. the var is within the [] */ /* whenever a dispatch call is made, meaning whenever data changes,we want usEffect to trigger so we put the dispatch in the [] */
+  
+  
         return (                                                      /* Return statement to give means to display product in html*/
      <>
      <Link className='btn btn-light my-3' to='/'>                 {/* Link to return to homescreen */}
        Go Back
      </Link>
+     {loading ? (                                           /* binding. if statement. if loading is true, display oading component. Otherwise check if there is an error, and if there is, display the message component along with error message..otherwise if there is no error then display product details.  */
+       <loader />
+     ) : error ? (
+       <message variant='danger'>{error}</message>
+     ) : (
      <Row>
        <Col md={6}>                                               
          <Image src={product.image} alt={product.name} fluid />     {/* First(left) column to have images. product is from the variable you created above. fluid is styling */}
@@ -76,7 +79,7 @@ const ProductScreen = () => {
            </ListGroup>
          </Card>
        </Col>
-     </Row>
+     </Row>)}
    </>
  )
 }
