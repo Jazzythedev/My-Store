@@ -7,7 +7,7 @@
 
 import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL } from "../constants/productConstants";
 
-export const productListReducer = (state = {products: []},                    /* this is a funtion called productListReducer.Its task is to retrieve the list of products form the DB. This function/reducer has two parameters. pass the state and what action you want to do. Action has a property called type which tells you what keyword you just received. This reducers resp. is to store products in the store, and it is an empty array to begin with since we are waiting for the data to come through. */
+export const productListReducer = (state = {products: []},                    /* this is a funtion called productListReducer.Its task is to retrieve the list of products form the DB. This function/reducer has two parameters. pass the state[state = {products: []} is the initial state of the app.] and what action you want to do. Action has a property called type which tells you what keyword you just received. This reducers resp. is to store products in the store, and it is an empty array to begin with since we are waiting for the data to come through. */
  action) => {
     switch (action.type) {                                          /* switch is a simple if statement, these are the type of actions/code words recieved   */
         case PRODUCT_LIST_REQUEST:                                  /* These are imported constants. When we see this code word, then someting needs to be done */
