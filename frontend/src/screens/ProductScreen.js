@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useNavigate } from 'react' /* usenav allows you to pass date from one comp to another eg items chosen from product screen  to cart screen */
-import { useParams, Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react' /* usenav allows you to pass date from one comp to another eg items chosen from product screen  to cart screen */
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'      
 import Rating from '../components/Rating';
 import { useDispatch, useSelector } from 'react-redux'                       /* useDispatch is a hook available from react redux to make dispatch calls from the product screen  */  /* useSelector is a hook to fetch data from the redux store */
@@ -53,7 +53,7 @@ const ProductScreen = () => {
            <ListGroup.Item>Description: {product.description}</ListGroup.Item>
          </ListGroup>
        </Col>
-       <Col md={3}>                                                        {/*  3rd column to display price and "add to the cart" */}
+       <Col md={3}>                                                      {/* /*  3rd column to display price and "add to the cart" */}
          <Card>
            <ListGroup variant='flush'>
              <ListGroup.Item>
@@ -74,7 +74,7 @@ const ProductScreen = () => {
                </Row>
              </ListGroup.Item>
                                                                     
-                {product.countInStock > 0 && (                              {/* if the product is in stock, if there is more than 0, display the following */}
+                {product.countInStock > 0 && (                              /* if the product is in stock, if there is more than 0, display the following */
                   <ListGroup.Item>
                     <Row>
                       <Col>Qty</Col>
@@ -84,16 +84,16 @@ const ProductScreen = () => {
                           value={qty}                                     /* value of dropdown is a quantity. a select dropdown that allows a user to select the number of items they want  */
                            onChange={(e) => setQty(e.target.value)}                                               /*  onchange is a dropdown funtionality. e stores the change. fire setQ function and set the value of e in local state.  if she wants 3 the value will be 3*/
                         >                                                
-                          {[...Array(product.countInStock).keys()].map((x) => (                                                                                    /* this is what goes inside of the dropdown menu to choose from. choices offered should reflect what is in stock!. Make a copy of the empty array and making an array out of count in stock and pulling out the keys (indices). if the stock count is 10 it will show 1o options in dropdown(this is due to the array function). indices are used to label the elements in an array starting from 0. use the indices to .  {/* while inside the array, look through every element with map funtion.  */}
+                            {[...Array(product.countInStock).keys()].map((x) => (     /* this is what goes inside of the dropdown menu to choose from. choices offered should reflect what is in stock!. Make a copy of the empty array and making an array out of count in stock and pulling out the keys (indices). if the stock count is 10 it will show 1o options in dropdown(this is due to the array function). indices are used to label the elements in an array starting from 0. use the indices to .  {/* while inside the array, look through every element with map funtion.  */
                                                                                       /* while inside the array, look through every element with map funtion.  */
-                              <option key={x+1} value={x+1}                                                                                 /* in a select statement there are two things to add, an option with a  key and value. THis is for each option. Bind key to x bec x is the indices coming in.  indices start at 0 so we add plus 1 so that the drop down selection for item count starts at 1.  */
-                              ></option>
-                          ))                                                                               
+                              <option key={x+1} value={x+1}>{x+1}</option>                                                                                 /* in a select statement there are two things to add, an option with a  key and value. THis is for each option. Bind key to x bec x is the indices coming in.  indices start at 0 so we add plus 1 so that the drop down selection for item count starts at 1. adding the third x+1 just allows us to display the values in the dropdown */
+                              ))
                             }  
+                         
                            </Form.Control>                                                                        
                       </Col>
                     </Row>
-                
+                    </ListGroup.Item>
                 )}                                                   
 
              <ListGroup.Item>
