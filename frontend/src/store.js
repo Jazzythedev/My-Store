@@ -8,6 +8,7 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'              /* All these imported funtions exist within the redux library. createStore creates a store, combineReducers combines reducers to be added to parameters as a group under one name, and applyMiddleware which breaks data into array of thunks. If you make an enhancement to the store(thunking in this case), you have to use appMiddleware. appmiddleware is a function that changes data, it will break the data into thunks.  */
 import thunk from 'redux-thunk'                                             /* break the data into chunks. */
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'             /* import the productlist reducer and details reducer */
+import { cartReducer } from './reducers/cartReducers'
 import {composeWithDevTools} from 'redux-devtools-extension'                /* this funtion within the redux devtools ext allows you to see the redux store in the dev tools. you are extending your data to be seen in the devtool window */
 
 
@@ -15,15 +16,22 @@ import {composeWithDevTools} from 'redux-devtools-extension'                /* t
 
 const reducer = combineReducers({                               /* function in redux that combines all reducers, empty objects,. Store that in value reducer and give it to the store. */
  productList: productListReducer,                                           /* here we create a simple name for functions that we are going to call, instead of using the function name, to shorten typing time. */
- productDetails: productDetailsReducer
+ productDetails: productDetailsReducer,
+cart: cartReducer
 })  
-const initialState = {}                                                /* this is the initial state, its an empty object. */
+const cartItemsFromStorage = localStorage.getItem('cartItems') ?                    /* DONT EVER STORE CART ITEMS IN LOCAL STORAGE . THIS IS FOR DEMONSTRATION PURSPOSE TO SHOW HOW IT WORKS.local storage, unlike usestate(storage specific to each component) or redux(global storage to share data among components) stores data on the browser and can exist as long as the browser isnt shutdown. create a const var called cartitemsfromstorage and check local storage to see if there is already a cart item here, assuming it is the same broswer session, it will come back showing that there are items in the cart. access local storage and get item. keys name is cartItems. if so, put in storage. parse like json from local storage.getitem of cartitems. otherwise its an empty array*/
+JSON.parse(localStorage.getItem('cartItems')) : []
+
+const initialState = {
+    cart: {cartItems:cartItemsFromStorage}                                      /* within cart reducer, cart items array should now be intitalized from local storage*/
+}                                                /* this is the initial state, its an empty object. */
 const middleware = [thunk]                                              /* array of thunks stored in a variable called middleware */
 const store = createStore(                                             /* store this in a variable store. */
                 reducer,                                                       /* this parameter includes the collection of reducers */
                 initialState,                                                     /* when app is first loaded, what data will be displayed by deafault. */
                 composeWithDevTools(applyMiddleware(...middleware))                 /* where you can makes changes to the data. thunk is done here. thunk breaks data down into small chunks to transfer data to store faster. When changing data, call applyMiddleware function. Takes existing data, and thunk it. spread operator.  */  /* redux devtools ext has a function called composewithdevtools that allows you to see the redux store. */ // to see the redux store open up developer tools and click on the redux tab. Notice @init is the initialize and it has transferred an empty array of products to the store, since there were no action types it fired the default function and returned to state of empty array of products.//      
                 )
+
 
 export default store 
 
