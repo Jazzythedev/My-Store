@@ -5,8 +5,8 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'                /* useLocation will accept query parameters that were stated in the addToCartHandler */
 import { useDispatch, useSelector } from 'react-redux'                  /* useSelector is a hook to fetch data from the redux store */
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
-import Message from '../Components/Message'
-
+import Message from '../components/Message'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = () => {
   const location = useLocation()              /* store the results of the following functions in created variables */
@@ -15,8 +15,8 @@ const CartScreen = () => {
   const navigate = useNavigate()
   const productId = params.id
 
-const qty = location.search ? Number(location.search.split('='))      /* location can 'split' the search if there are multiple parameters in the addToCart query parameters, it creates an array. if it reads qty=3=2=5 the the the qty is key and and 3,2 and 5 are all separate line item values. we ask for the [1] indices value in the array bec the [0] value is qty. Wrap this in a number function as that convert it to a number, this is referred to as typecasting*/
-[1] : 1                                                                       /* : means else. assume the quantity is 1. when adding something to a cart it must be 1 or greater than 1, so if a number isnt being passed, then assume its 1 */
+const qty = location.search ? Number(location.search.split('=')[1])      /* location can 'split' the search if there are multiple parameters in the addToCart query parameters, it creates an array. if it reads qty=3=2=5 the the the qty is key and and 3,2 and 5 are all separate line item values. we ask for the [1] indices value in the array bec the [0] value is qty. Wrap this in a number function as that convert it to a number, this is referred to as typecasting*/
+ : 1                                                                       /* : means else. assume the quantity is 1. when adding something to a cart it must be 1 or greater than 1, so if a number isnt being passed, then assume its 1 */
 
 useEffect(() => {                                                         
   if (productId){                                                           /* if in the route there is a product id, dispatch the addtocart function.*/
@@ -32,7 +32,10 @@ const removeFromCartHandler = (id) => {           /* to remove a cart item, pass
 }
 
 const checkoutHandler = () => {                       /* this function is fired when you are ready to make purchase after items are added to cart. it handles navigating to login and then shipping */
-  navigate('/login?redirect=shipping')              
+navigate('/login?redirect=shipping')             
+
+
+
 
 }
 
@@ -93,13 +96,13 @@ return (
         <ListGroup variant='flush'>
           <ListGroup.Item>
             <h2>
-              Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+              Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})       {/* subtotal uses the reduce function to add the totals. acc is the accumulated sum of each item, and item represents each item.  0 is default value if there arent any items to add. */}
               items
             </h2>
             $
             {cartItems
-              .reduce((acc, item) => acc + item.qty * item.price, 0)
-              .toFixed(2)}
+              .reduce((acc, item) => acc + item.qty * item.price, 0)            /* dollar value created here. item qty multiplied by proce amd added to next item  */
+              .toFixed(2)}                                                    {/* to fixed produces an answer to two decima places. */}
           </ListGroup.Item>
           <ListGroup.Item>
             <Button
