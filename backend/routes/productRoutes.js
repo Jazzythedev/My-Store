@@ -1,5 +1,5 @@
 import express from 'express'                                   /* improt express bc we will have more routes in here */
-
+import { getProducts, getProductById } from '../controllers/productController.js'
 const router = express.Router()                 /* lot of things within express, just use the roiuter library. Make an instance of just the router and store it in a var called router.  */
 
 
