@@ -28,7 +28,7 @@ const cart = useSelector((state) => state.cart)         /* useSelector to fetch 
 const {cartItems} = cart                              /* deconstruct  the data that is stored in the cart variable and get cart items from cart */
 
 const removeFromCartHandler = (id) => {           /* to remove a cart item, pass the id so the reducer everything else but that specific product matching that id. This is triggered when a user clicks the trash icon */
-  dispatch(removeFromCartHandler(id))
+  dispatch(removeFromCart(id))
 }
 
 const checkoutHandler = () => {                       /* this function is fired when you are ready to make purchase after items are added to cart. it handles navigating to login and then shipping */
