@@ -4,7 +4,7 @@ import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'                                     /* import these because that is where function to fire routes to user authentication are stored, an we can refer to it */
 import productRoutes from './routes/productRoutes.js'                               /* import these because that is where function to fire routes to products and details are stored, an we can refer to it */
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'              /* import it here so you can use it for the whole app. */
-import { protect } from './middleware/authMiddleware.js'
+
 
 const app = express()                                                      /*  create instance of express to setup routes ie using the bus */
 dotenv.config()                                                             /* tells code to open the env file and read it */
@@ -22,7 +22,6 @@ dotenv.config()                                                             /* t
 app.use('/api/users', userRoutes)                               /* this is the rout eto authentiate login */
 app.use(notFound)                                                   /* notFound funtion */
 app.use(errorHandler)                                               /* this is the eror middleware handler that handles exceptions for the entire application if there isnt a trycatch. this is a route, but we dont specify a route url bc we want express to use this for every call that is made. so that if there is an unhandled route it will be diverted to the middleware. */
-app.use(protect)                                                    //this calls the thing that confirms that a token is real and not inputted by a hacker, or tells you if there is no token in header to begin with.
 
 
 

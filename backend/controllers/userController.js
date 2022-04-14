@@ -13,8 +13,8 @@ import generateToken from '../utils/generateToken.js'
     const {email, password} = req.body
     const user = await Users.findOne({email})                                                            /* to see if the users user and pass are in the DB. call users model mongoose to find one record there the email column in the DB collection should match the request coming in. All stored in var user, or the found user. */
 
-if (user && (bcrypt.compare(password, user.password))                                                                         /* match password. call user object which is colelction from DB. if ther user is valid and bcrypt can compare passwords by comparing ENCRYPTED  pw, it will return a true, otherwise false.  */
-)  {
+if (user && user.matchPassword(password)) {                                                                        /* match password. call user object which is colelction from DB. usermodel as a match password mathod on top of that.if ther user is valid and bcrypt can compare passwords by comparing ENCRYPTED  pw, it will return a true, otherwise false.  */
+
     return res.json ({                                          /*if user and pass is valid, return response.json. with a token   */
         
     _id: user._id,                                                  /*pass as many objects as youd like */
@@ -29,12 +29,26 @@ if (user && (bcrypt.compare(password, user.password))                           
     throw new Error('Invalid email or password');
 }
 
-
-
-
-
-
-
 })
 
-export {authUser}
+
+//  @desc   Get user profile
+//  @route  GET /api/users/profile
+//  @access Private (the protection function is what makes it a private route)
+const getUserProfile = asyncHandler(async (req, res) => {                               /* to get user profile. query DB using the users ID. at this point the token is already decoded. and u can retrieve the req.user.Id. through whch we query DB model to find the user,  we can re call the Users func and find by id . store it in var called user. */
+    const user = await Users.findById(req.user._id)
+
+    if (user) {                                                              //if user existreturn json with all followin gobjects
+        return res.json({
+            _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin
+        })   
+    } else {                                                        //if user profile doesnt exist
+        res.status(404)
+        throw new Error('User Not Found')
+    }
+})
+
+export {authUser, getUserProfile}
