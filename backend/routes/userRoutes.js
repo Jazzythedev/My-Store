@@ -1,13 +1,17 @@
 import express from 'express'   /* import express bc we will have more routes in here */
-import { authUser, getUserProfile } from '../controllers/userController.js'
+import { authUser, getUserProfile, registerUser, updateUserProfile } from '../controllers/userController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 
 
 const router = express.Router()                 /* lot of things within express, just use the router library. Make an instance of just the router and store it in a var called router.  */
 
+router.route('/').post(registerUser)
 router.post('/login', authUser)                                        /* post means user submitting data to server. authUser is a function that is found in usercontroller. it authenticates a user during login.*/
- router.route('/profile').get( protect, getUserProfile)                                                                       //path to user profile. Its a get route and call protect function first to make sure token exists. once that is successful call the getUserProfile function . protect function makes it a private route
+ router
+    .route('/profile')
+    .get( protect, getUserProfile)                                                                       //path to user profile. Its a get route and call protect function first to make sure token exists. once that is successful call the getUserProfile function . protect function makes it a private route
+    .put(protect, updateUserProfile)
 
  export default router
 

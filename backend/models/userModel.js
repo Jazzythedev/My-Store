@@ -24,7 +24,16 @@ import mongoose  from 'mongoose'                   /* mongoose creates tables/co
 
  }, {
      timestamps: true            /* to capture data and time when things were changed or added(Timestamp) */
- })                         
+ })  
+ 
+ userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+        next()
+    }
+
+const salt = await bcrypt.genSalt(10)
+this.password = await bcrypt.hash(this.password, salt)
+ })
 
  userSchema.methods.matchPassword = async function (enteredPassword)  {                             //you can add methods on top of the model so that when you retieve data you have an option to call these methods. 
   return await bcrypt.compare(enteredPassword, this.password)                              //method on userschema. match password method. async function. give me the pw the user typed. internally bcrypt will be called to compare entered used pw to the current object returned from DB.
