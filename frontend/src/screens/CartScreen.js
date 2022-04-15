@@ -32,7 +32,7 @@ const removeFromCartHandler = (id) => {           /* to remove a cart item, pass
 }
 
 const checkoutHandler = () => {                       /* this function is fired when you are ready to make purchase after items are added to cart. it handles navigating to login and then shipping */
-navigate('/login?redirect=shipping')             
+navigate('/login?redirect=/shipping')             
 
 
 

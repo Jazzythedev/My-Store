@@ -42,6 +42,12 @@ export const login = (email, password) => async (dispatch)=> {                  
                 })
               }
             }
+
+export const logout = () => (dispatch) => {         //once this is fired, the local storage is emptied of the user and pass and the action userlogout is fired
+  localStorage.removeItem('userInfo')
+  dispatch({ type: USER_LOGOUT })
+
+}
     
 
 

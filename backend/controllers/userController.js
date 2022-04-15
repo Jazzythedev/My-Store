@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler'                //express lib that handles asyncronous calls */
 import Users from '../models/userModel.js'
-import bcrypt from 'bcryptjs'
 import generateToken from '../utils/generateToken.js'
 
 //this is to authenticate a users login details and then provide her with a token that represents the fact that she was authenticated.
@@ -13,7 +12,7 @@ import generateToken from '../utils/generateToken.js'
     const {email, password} = req.body
     const user = await Users.findOne({email})                                                            /* to see if the users user and pass are in the DB. call users model mongoose to find one record there the email column in the DB collection should match the request coming in. All stored in var user, or the found user. */
 
-if (user && user.matchPassword(password)) {                                                                        /* match password. call user object which is colelction from DB. usermodel as a match password mathod on top of that.if ther user is valid and bcrypt can compare passwords by comparing ENCRYPTED  pw, it will return a true, otherwise false.  */
+if (user && await user.matchPassword(password)) {                                                                        /* match password. call user object which is colelction from DB. usermodel as a match password mathod on top of that.if ther user is valid and bcrypt can compare passwords by comparing ENCRYPTED  pw, it will return a true, otherwise false.  */
 
     return res.json ({                                          /*if user and pass is valid, return response.json. with a token   */
         
@@ -25,7 +24,7 @@ if (user && user.matchPassword(password)) {                                     
 })
                                                  
 }   else {
-    res.status(404) 
+    res.status(401) 
     throw new Error('Invalid email or password');
 }
 
@@ -49,6 +48,66 @@ const getUserProfile = asyncHandler(async (req, res) => {                       
         res.status(404)
         throw new Error('User Not Found')
     }
-})
+}) 
 
-export {authUser, getUserProfile}
+// @desc Register a new user
+// @route POST/ api/users
+// @access Public
+const registerUser = asyncHandler(async (req, res) => {
+    const { name, email, password } = req.body
+
+    const userExists = await Users.findOne({email})
+
+    if (userExists) {
+        res.status(400)
+        throw new Error('User already Exists in the system!')
+    }
+
+    const user = await Users.create({
+        name,
+        email,
+        password,
+    })
+
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user._id),
+        })
+    } else {
+        res.status(400)
+        throw new Error('Invalid user data')
+    } 
+})
+// @desc update user profile
+// @route PUT api/users/profile
+// @access Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+    const user = await Users.findById(req.user._id)
+
+    if (user) {
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        if (req.body.password) {
+            user.password = req.body.password
+        }
+    
+        const updatedUser = await user.save()
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser._id),
+        })
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+    })
+
+ export {authUser, getUserProfile, registerUser, updateUserProfile }

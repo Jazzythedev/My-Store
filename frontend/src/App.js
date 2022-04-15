@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
+import LoginScreen from './screens/LoginScreen'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path='/product/:id' element={ <ProductScreen /> } />        {/* use colon to read off parameter in js file */}
                 <Route path='/cart/:id' element= { <CartScreen/> } />                 {/* route to add an item to cartscreen. This route includes the items ID*/}
                 <Route path='/cart' element= { <CartScreen/> } />                    {/*  This route shows all the items in the cart*/}
+                <Route path='/login' element= { <LoginScreen/> } />     {/* dont say 'exact' like homescreen route since there will be ? ...... queries to add to the route */}
               </Routes>
             </Container>                                                          
             </main>
