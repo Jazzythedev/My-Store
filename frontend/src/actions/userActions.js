@@ -1,4 +1,4 @@
-//for user login
+//for user login, register, update and logout of profile
 
 import axios from 'axios'
 import {

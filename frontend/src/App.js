@@ -22,9 +22,9 @@ const App = () => {
                 <Route path='/product/:id' element={ <ProductScreen /> } />        {/* use colon to read off parameter in js file */}
                 <Route path='/profile' element={<ProfileScreen />} />
                 <Route path='/register' element={<RegisterScreen />} />
-                <Route path='/cart/:id' element= { <CartScreen/> } />                 {/* route to add an item to cartscreen. This route includes the items ID*/}
-                <Route path='/cart' element= { <CartScreen/> } />                    {/*  This route shows all the items in the cart*/}
-                <Route path='/login' element= { <LoginScreen/> } />     {/* dont say 'exact' like homescreen route since there will be ? ...... queries to add to the route */}
+                <Route path='/cart/:id' element= { <CartScreen /> } />                 {/* route to add an item to cartscreen. This route includes the items ID*/}
+                <Route path='/cart' element= { <CartScreen /> } />                    {/*  This route shows all the items in the cart*/}
+                <Route path='/login' element= { <LoginScreen /> } />     {/* dont say 'exact' like homescreen route since there will be ? ...... queries to add to the route */}
               </Routes>
             </Container>                                                          
             </main>
