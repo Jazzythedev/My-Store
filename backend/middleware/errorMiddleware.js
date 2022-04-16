@@ -16,10 +16,12 @@ const notFound = (req, res, next) => {      /* to speficifically handle 404 mess
 const errorHandler = (err, req, res, next) => {                            //create a function called errorHandler, and it will be triggered by undhandled exceptions. The parameter is the error, req, res, and next ////Next function takes the user nack to continue their search as usual. if you dont want the user to proceed any futher, do not fire a next function. next is fo rwhen you are done handling the error and it takes you to the next process. //
   console.log("I am in the error handler")                                   /* This is displayed in the CLI if there in an unhandled error/exception that the error handler is dealing with. express adds this listener saying if there is an unhandled exception, i will call the error handler fuction.  */                    
   console.log(`res.statuscode: ${res.statusCode}`) 
+  console.log(`err.message: ${err.message}`) 
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode       //  this is a simple if statement. The res has a status code. If it is 200 then change it to 500, otherwise keep the same status code. Put the response in a variable called status code. if something is wrong, change the staus to 500 otherwise keep it at status code incase it is a 404. A function called not found.  */
    res.status(statusCode)                                                     // set the response status to be the new status code and send a json with the error code. */
     res.json({
-    message: err.message                                        /* This is your APIs response. dont call next bc you dotn want it to go anywhere else */
+    message: err.message  
+                                         /* This is your APIs response. dont call next bc you dotn want it to go anywhere else */
 })
 
 
