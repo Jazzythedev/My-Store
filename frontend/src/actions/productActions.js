@@ -42,9 +42,8 @@ export const listProductDetails = (id) => async (dispatch) => {             /* T
     } catch (error) {
         dispatch({                                                          /* This call is dispatched if product list details retrieval is a failure, and the dispatch will send an action type product list fail, and pass the error as payload */
             type: PRODUCT_DETAILS_FAIL,
-            payload: 
-            error.response && error.response.data.message  ? error.response.data.message : error.message     /* To avoid displaying all of the data that comes along with an error message, do a simple if statement. The condition is as follows: is there a response property inside the error object? if there is, does the response property hava data that has a message in it? if so then the errr is in error.response.data.message(This error comes from the backend). otherwise pick up the error.message(This error comes from the frontend) message */
-
+             /* To avoid displaying all of the data that comes along with an error message, do a simple if statement. The condition is as follows: is there a response property inside the error object? if there is, does the response property hava data that has a message in it? if so then the errr is in error.response.data.message(This error comes from the backend). otherwise pick up the error.message(This error comes from the frontend) message */
+            payload: error.response && error.response.data.message  ? error.response.data.message : error.message    
         })
 }
 
