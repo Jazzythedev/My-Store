@@ -22,8 +22,8 @@ const reducer = combineReducers({                               /* function in r
  cart: cartReducer,
  userLogin: userLoginReducer,
  userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
-  userUpdateProfile: userUpdateProfileReducer,  
+ userDetails: userDetailsReducer,
+ userUpdateProfile: userUpdateProfileReducer,  
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?                    /* DONT EVER STORE CART ITEMS IN LOCAL STORAGE . THIS IS FOR DEMONSTRATION PURSPOSE TO SHOW HOW IT WORKS.local storage, unlike usestate(storage specific to each component) or redux(global storage to share data among components) stores data on the browser and can exist as long as the browser isnt shutdown. create a const var called cartitemsfromstorage and check local storage to see if there is already a cart item here, assuming it is the same broswer session, it will come back showing that there are items in the cart. access local storage and get item. keys name is cartItems. if so, put in storage. parse like json from local storage.getitem of cartitems. otherwise its an empty array*/
