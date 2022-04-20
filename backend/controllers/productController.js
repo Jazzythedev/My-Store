@@ -11,7 +11,6 @@ const getProducts = asyncHandler(async (req, res) =>  {             // tells our
     res.json(products)              // send data back to the call as a response in json file.  */
 
 })
-
 //@desc fetch single product by id                              /* three things to include in code for FYI */
 //@route GET route /api/products/:id
 //@access Public
