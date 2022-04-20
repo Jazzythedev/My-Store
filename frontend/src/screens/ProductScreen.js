@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 
 const ProductScreen = () => {
   
-  const [qty, setQty] = useState(0);          /* qty is the local variable, and state the name of the function  that is called to set the state "setQty". All this is to store the quantity of an item chosen by a customer. by default when component starts, value is zero.*/
+  const [qty, setQty] = useState(1);          /* qty is the local variable, and state the name of the function  that is called to set the state "setQty". All this is to store the quantity of an item chosen by a customer. by default when component starts, value is zero.*/
   const params = useParams();                  /* useParam hook to loop through array of elements and store the output in a new variable called params */
   const dispatch = useDispatch()            /* Make dispatch call, trigger list products details function. from the productscreen created a var called dispatch store the hook 'useDispatch' in it. */     
   const productDetails = useSelector((state) => state.productDetails)   /* create a var called product list details that will fire the hook(useSelector) to read data from the redux store, which is the state information. From the state we want to read to read product details. THe contents of the redux store should  have loading flag, products and a possibility of an error. */

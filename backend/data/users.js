@@ -6,8 +6,7 @@ import bcrypt from 'bcryptjs'
 const users = [
     {
         name: 'Admin User',                     /* all users must have a name */
-        email: 'admin@myShop.com',
-                                                
+        email: 'admin@myShop.com',                                        
         password: bcrypt.hashSync('654321', 1),                  /* passwords must not be stored in plain text, they must be encrypted using an install called bcryptjs. hash means covert from plain to encrypted. and it will go through 20 rounds of changing it and the 20th roll is what it will store.  */
         isAdmin: true,                              /* we want to make this person an admin so set to true */
     },
