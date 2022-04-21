@@ -7,11 +7,12 @@
 
 import {createStore, combineReducers, applyMiddleware} from 'redux'              /* All these imported funtions exist within the redux library. createStore creates a store, combineReducers combines reducers to be added to parameters as a group under one name, and applyMiddleware which breaks data into array of thunks. If you make an enhancement to the store(thunking in this case), you have to use appMiddleware. appmiddleware is a function that changes data, it will break the data into thunks.  */
 import thunk from 'redux-thunk'                                             /* break the data into chunks. */
-import { productListReducer, productDetailsReducer } from './reducers/productReducers'             /* import the productlist reducer and details reducer */
-import { cartReducer } from './reducers/cartReducers'
+import { productListReducer, productDetailsReducer } from './reducers/productReducers.js'             /* import the productlist reducer and details reducer */
+import { cartReducer } from './reducers/cartReducers.js'
 import {composeWithDevTools} from 'redux-devtools-extension'                /* this funtion within the redux devtools ext allows you to see the redux store in the dev tools. you are extending your data to be seen in the devtool window */
 import { userLoginReducer, userRegisterReducer,  userDetailsReducer,
-    userUpdateProfileReducer,  } from './reducers/userReducers'
+    userUpdateProfileReducer,  } from './reducers/userReducers.js'
+import { orderCreateReducer } from './reducers/orderReducers.js'
 
 
 /*  Fire the function createStore, and give it 2 parameters. 1. reducers- Reducers are always used to write data into the store. They are functions and there is one reducer for each task.  2. initial state- default data that is seen within store/preloaded stored data.  */
@@ -24,6 +25,7 @@ const reducer = combineReducers({                               /* function in r
  userRegister: userRegisterReducer,
  userDetails: userDetailsReducer,
  userUpdateProfile: userUpdateProfileReducer,  
+ orderCreate: orderCreateReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?                    /* DONT EVER STORE CART ITEMS IN LOCAL STORAGE . THIS IS FOR DEMONSTRATION PURSPOSE TO SHOW HOW IT WORKS.local storage, unlike usestate(storage specific to each component) or redux(global storage to share data among components) stores data on the browser and can exist as long as the browser isnt shutdown. create a const var called cartitemsfromstorage and check local storage to see if there is already a cart item here, assuming it is the same broswer session, it will come back showing that there are items in the cart. access local storage and get item. keys name is cartItems. if so, put in storage. parse like json from local storage.getitem of cartitems. otherwise its an empty array*/

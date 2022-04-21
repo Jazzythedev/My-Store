@@ -10,8 +10,12 @@ const PlaceOrderScreen =() => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const cart = useSelector((state) => state.cart)
+    //check redux store for order and stire in OrderCreate
     const orderCreate = useSelector((state) => state.orderCreate)
-   
+
+    //out of the create order screen we want three parts
+    const { order, success, error } = orderCreate
+   //if tis a success, nav to order page. 
     useEffect(() => {
         if (success) {
           navigate(`/order/${order._id}`)
