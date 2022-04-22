@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import CheckoutSteps from '../components/CheckoutSteps'
+import Message from '../components/Message.js'
+import CheckoutSteps from '../components/CheckoutSteps.js'
+import { createOrder } from '../actions/orderActions.js'                
 
 
 const PlaceOrderScreen =() => {
@@ -40,8 +41,8 @@ const PlaceOrderScreen =() => {
       ).toFixed(2)
     
       const placeOrderHandler = () => {
-         dispatch(
-          createOrder({
+        dispatch(
+         createOrder({                                                          
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
             paymentMethod: cart.paymentMethod,
@@ -139,7 +140,7 @@ const PlaceOrderScreen =() => {
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    {error && <Message variant='danger'>{error}</Message>}
+                    {error && <Message variant='danger'>{error}</Message>}                               
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Button

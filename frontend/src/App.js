@@ -12,6 +12,7 @@ import ProfileScreen from './screens/ProfileScreen.js'
 import ShippingScreen from './screens/ShippingScreen.js'
 import PaymentScreen from './screens/PaymentScreen.js';
 import PlaceOrderScreen from './screens/PlaceOrderScreen.js';
+import OrderScreen from './screens/OrderScreen.js'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
               <Routes>                                                           {/*    Must wrap all individual routes in Routes */}
                 <Route path='/' element={ <HomeScreen /> } exact />                  {/*   when the path is / exactly at end of url then show homescreem component   */}
                 <Route path='/product/:id' element={ <ProductScreen /> } />        {/* use colon to read off parameter in js file */}
+                <Route path='/order/:id' element={ <OrderScreen /> } />
                 <Route path='/profile' element={<ProfileScreen />} />
                 <Route path='/shipping' element={<ShippingScreen />} />
                 <Route path='/payment' element={<PaymentScreen />} />

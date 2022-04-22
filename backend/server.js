@@ -22,6 +22,12 @@ dotenv.config()                                                             /* t
   app.use('/api/products', productRoutes)                         /* telling express if you see a a url that says api/products, route them to productRoutes  */
   app.use('/api/users', userRoutes)                               /* this is the rout eto authentiate login */
   app.use('/api/orders', orderRoutes)
+  
+  //for paypal
+  app.get('/api/config/paypal', (req, res) => 
+    res.send(process.env.PAYPAL_CLIENT_ID)
+  )
+
   app.use(notFound)                                                   /* notFound funtion */
   app.use(errorHandler)                                               /* this is the eror middleware handler that handles exceptions for the entire application if there isnt a trycatch. this is a route, but we dont specify a route url bc we want express to use this for every call that is made. so that if there is an unhandled route it will be diverted to the middleware. */
 
