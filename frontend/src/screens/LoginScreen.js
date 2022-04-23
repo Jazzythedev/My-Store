@@ -21,8 +21,8 @@ const LoginScreen = () => {                     //all these bec we will navigate
     const userLogin = useSelector((state) => state.userLogin)               //read redux state, and in there, userLogin. we wanna read the data written by userLogin reducer
     const { loading, error, userInfo } = userLogin                          // from that data we want l, e, and u.e.
 
-    const redirect = location.search ? location.search.split('=')[1]     /* location can 'split' the search if there are multiple parameters in the addToCart query parameters, it creates an array. if it reads qty=3=2=5 the the the qty is key and and 3,2 and 5 are all separate line item values. we ask for the [1] indices value in the array bec the [0] value is qty. Wrap this in a number function as that convert it to a number, this is referred to as typecasting*/
- : '/'                                                                        /* : means else. if no redirecr available take me to home screen */
+    const redirect = location.search ? location.search.split('=')[1]: '/'      /* location can 'split' the search if there are multiple parameters in the addToCart query parameters, it creates an array. if it reads qty=3=2=5 the the the qty is key and and 3,2 and 5 are all separate line item values. we ask for the [1] indices value in the array bec the [0] value is qty. Wrap this in a number function as that convert it to a number, this is referred to as typecasting*/
+                                                                        /* : means else. if no redirecr available take me to home screen */
 
     useEffect(() => {                                                 //if user info is already in local storage, they dont need to put their user and pass in, so navigate to where redirect goes. (on line 35 in cartScreen)
         if (userInfo) {
@@ -65,8 +65,8 @@ const LoginScreen = () => {                     //all these bec we will navigate
         
               <Row className='py-3'>
                 <Col>
-                  New Customer?{' '}                                                                {/* new customer to register page. */}
-                  <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>                 {/* you will have added items to cart, been directed to the sign up page and then redirected to shipping screen or wherever */}
+                  New Customer?{' '}                                                             
+                  <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>                 
                     Register
                   </Link>
                 </Col>
@@ -77,7 +77,7 @@ const LoginScreen = () => {                     //all these bec we will navigate
 
         }
 
-        export default LoginScreen
+export default LoginScreen
 
 
 

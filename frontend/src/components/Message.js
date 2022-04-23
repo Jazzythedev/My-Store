@@ -6,7 +6,7 @@ const Message = ({ variant, children }) => {
 }
 
 Message.defaultProps = {
-  variant: 'info',                  /* info varian refers to one of the styling options. */
+  variant: 'info',                  /* info variant refers to one of the styling options. */
 }
 
 export default Message  

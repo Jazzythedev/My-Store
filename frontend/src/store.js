@@ -1,10 +1,3 @@
-{/* this is a temporary store in your browser used by your apploication alone. */}/* The whole redux process is happening in the browser window of the user, as they go though the website and access information, redux store is created on their local browser. Each respective client thats browsing in the website gets memory taken on their browser for reduz store.  */
-//This is only to take data from the DB and share it across components and for faster access to data // 
-/* This is part of the first step to setting up redux. Redux allows one to share data across components. It is a library that allows you to create a global memory for any component to access, as a temp store. For example, a button click triggers a fuction(action). The info is passed to a reducer who listens for a specific type of data they have been subscribed to, and the info is then written in a store. The data is then available to all components. */
-/* The process is to create a store, create a reducer, write the actions and then hook up with components.  */
-/* before creating store.js install in front end the following: npm i redux react-redux redux-devtools-extension redux-thunk (4 downloads) */
-
-
 import {createStore, combineReducers, applyMiddleware} from 'redux'              /* All these imported funtions exist within the redux library. createStore creates a store, combineReducers combines reducers to be added to parameters as a group under one name, and applyMiddleware which breaks data into array of thunks. If you make an enhancement to the store(thunking in this case), you have to use appMiddleware. appmiddleware is a function that changes data, it will break the data into thunks.  */
 import thunk from 'redux-thunk'                                             /* break the data into chunks. */
 import { productListReducer, productDetailsReducer } from './reducers/productReducers.js'             /* import the productlist reducer and details reducer */
@@ -13,6 +6,14 @@ import {composeWithDevTools} from 'redux-devtools-extension'                /* t
 import { userLoginReducer, userRegisterReducer,  userDetailsReducer,
     userUpdateProfileReducer,  } from './reducers/userReducers.js'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers.js'
+
+
+///* this is a temporary store in your browser used by your apploication alone. */}/* The whole redux process is happening in the browser window of the user, as they go though the website and access information, redux store is created on their local browser. Each respective client thats browsing in the website gets memory taken on their browser for reduz store.  */
+//This is only to take data from the DB and share it across components and for faster access to data // 
+/* This is part of the first step to setting up redux. Redux allows one to share data across components. It is a library that allows you to create a global memory for any component to access, as a temp store. For example, a button click triggers a fuction(action). The info is passed to a reducer who listens for a specific type of data they have been subscribed to, and the info is then written in a store. The data is then available to all components. */
+/* The process is to create a store, create a reducer, write the actions and then hook up with components.  */
+/* before creating store.js install in front end the following: npm i redux react-redux redux-devtools-extension redux-thunk (4 downloads) */
+
 
 
 /*  Fire the function createStore, and give it 2 parameters. 1. reducers- Reducers are always used to write data into the store. They are functions and there is one reducer for each task.  2. initial state- default data that is seen within store/preloaded stored data.  */

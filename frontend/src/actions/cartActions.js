@@ -1,10 +1,9 @@
 /* actions make an axios call to get products from the DB  here we also learn how to add infomation into local storage. CART INFO IS BEING WRITTEN INTO REDUX AND LOCAL */
 
-import axios from "axios"
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants"
+import axios from 'axios'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from '../constants/cartConstants'
 
-export const addToCart = (id, qty) => async (dispatch, getState)=>                           /* GETSTATE HOOK GOES TO REDUX STORE AND GRABS STATE INFO FOR YOU */
-    {
+export const addToCart = (id, qty) => async (dispatch, getState)=> {                          /* GETSTATE HOOK GOES TO REDUX STORE AND GRABS STATE INFO FOR YOU */
     const {data} = await axios.get(`/api/products/${id}`)                           /* api that brings back product info. to be stored in variable called data. make axios call to the route. store return in var called data.  */
      
     dispatch ({                                                             /* dispatch calls must have type of dispatch call that is made and then payload */
@@ -32,23 +31,21 @@ export const removeFromCart = (id) => (dispatch, getState) => {                 
 
 }
 
-export const saveShippingAddress = (data) => (dispatch) => 
-{
+export const saveShippingAddress = (data) => (dispatch) => { 
     dispatch({
         type: CART_SAVE_SHIPPING_ADDRESS,
         payload: data,
     })
-    localStorage.setItem('shippingAddress', JSON.stringify
-    (data))
+    localStorage.setItem('shippingAddress', JSON.stringify(data))
 }
 
 
-export const savePaymentMethod = (data) => (dispatch) => 
-{
+export const savePaymentMethod = (data) => (dispatch) => {
     dispatch({
         type: CART_SAVE_PAYMENT_METHOD,
         payload: data,
     })
-    localStorage.setItem('paymentMethod', JSON.stringify
-    (data))
+
+    localStorage.setItem('paymentMethod', JSON.stringify(data))
+    
 }

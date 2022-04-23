@@ -1,4 +1,4 @@
-/* the purpose of this component is to show a loading spinner when data is being retrieved from the DB or redux store. */
+// the purpose of this component is to show a loading spinner when data is being retrieved from the DB or redux store. */
 
 
 import React from 'react'
