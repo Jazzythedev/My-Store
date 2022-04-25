@@ -5,7 +5,7 @@ import { cartReducer } from './reducers/cartReducers.js'
 import {composeWithDevTools} from 'redux-devtools-extension'                /* this funtion within the redux devtools ext allows you to see the redux store in the dev tools. you are extending your data to be seen in the devtool window */
 import { userLoginReducer, userRegisterReducer,  userDetailsReducer,
     userUpdateProfileReducer,  } from './reducers/userReducers.js'
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers.js'
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers.js'
 
 
 ///* this is a temporary store in your browser used by your apploication alone. */}/* The whole redux process is happening in the browser window of the user, as they go though the website and access information, redux store is created on their local browser. Each respective client thats browsing in the website gets memory taken on their browser for reduz store.  */
@@ -28,7 +28,8 @@ const reducer = combineReducers({                               /* function in r
  userUpdateProfile: userUpdateProfileReducer,  
  orderCreate: orderCreateReducer,
  orderDetails: orderDetailsReducer,
- orderPay: orderPayReducer
+ orderPay: orderPayReducer,
+ orderListMy: orderListMyReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?                    /* DONT EVER STORE CART ITEMS IN LOCAL STORAGE . THIS IS FOR DEMONSTRATION PURSPOSE TO SHOW HOW IT WORKS.local storage, unlike usestate(storage specific to each component) or redux(global storage to share data among components) stores data on the browser and can exist as long as the browser isnt shutdown. create a const var called cartitemsfromstorage and check local storage to see if there is already a cart item here, assuming it is the same broswer session, it will come back showing that there are items in the cart. access local storage and get item. keys name is cartItems. if so, put in storage. parse like json from local storage.getitem of cartitems. otherwise its an empty array*/

@@ -12,7 +12,7 @@ const CartScreen = () => {
   const location = useLocation()              /* store the results of the following functions in created variables */
   const dispatch = useDispatch()
   const params = useParams()
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
   const productId = params.id
 
   /* location can 'split' the search if there are multiple parameters in the addToCart query parameters, it creates an array. if it reads qty=3=2=5 the the the qty is key and and 3,2 and 5 are all separate line item values. we ask for the [1] indices value in the array bec the [0] value is qty. Wrap this in a number function as that convert it to a number, this is referred to as typecasting*/
