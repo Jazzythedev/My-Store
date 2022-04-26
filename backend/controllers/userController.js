@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs'
 import asyncHandler from 'express-async-handler'
 import Users from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
