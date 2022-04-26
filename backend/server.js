@@ -1,11 +1,12 @@
 import express from 'express'                      /* import express to create routes, syntax changed fom common js to emca  */
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+import path from 'path'
 import userRoutes from './routes/userRoutes.js'                                     /* import these because that is where function to fire routes to user authentication are stored, an we can refer to it */
 import orderRoutes from './routes/orderRoutes.js'
 import productRoutes from './routes/productRoutes.js'                               /* import these because that is where function to fire routes to products and details are stored, an we can refer to it */
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'              /* import it here so you can use it for the whole app. */
-import path from 'path'
+
 
 const app = express()                                                      /*  create instance of express to setup routes ie using the bus */
 dotenv.config()                                                             /* tells code to open the env file and read it */
